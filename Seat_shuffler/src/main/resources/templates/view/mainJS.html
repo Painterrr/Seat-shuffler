@@ -11,7 +11,7 @@
         }
         .tableContainer {
             border-collapse: collapse;
-            position: middle;
+            
         }
         td, th {
             border: 1px solid black;
@@ -34,7 +34,8 @@
         <input type="number" id="rows" required><br><br>
         <label for="columns">Columns:</label>
         <input type="number" id="columns" required><br><br>
-        <button onclick="generateTable()">Generate Table</button>
+        <button onclick="generateTable()">테이블 생성</button>
+        <button onclick="seatShuffle()">자리 배치 시작</button>
     </div>
     <div id="tableContainer"></div>
 
