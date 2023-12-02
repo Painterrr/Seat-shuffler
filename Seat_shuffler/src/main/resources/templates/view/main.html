@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .container{
-            text-align: center;
+        .setting-menu {
+          margin-left:auto; 
+          margin-right:auto;
+          width: 80%;
+          height: 20%;;
+        }
+
+        .container1, .container2, .container3{
+          text-align: center;
+          
         }
 
         h1, h2 {
             text-align: center; 
         }
 
-        table {
+        .table {
             margin-left:auto; 
             margin-right:auto;
             width: 80%;
@@ -25,6 +33,10 @@
             border : 1px solid black;
             text-align: center;
         }
+
+        .table-header {
+          background-color: lightgray;
+        }
     </style>
 </head>
 <body>
@@ -34,28 +46,61 @@
     <br>
     <br>
     
-    <h2>-- 칠판 --</h2>
-    <br>
-    
-    <form class="container" action="/table/create" method="get">
-        <div class="table-create">
-            <label class="form-label">가로</label>
-            <input type="text" name="row">
-        </div>
-        <div class="table-create">
-            <label class="form-label">세로</label>
-            <input type="text" name="col">
-        </div>
-        <button type="submit" class="btn btn-primary">테이블 생성</button>
-    </form>
+    <table class="setting-menu">
+      <thead>
+        <tr class="table-header">
+          <th scope="col" colspan='9'>테이블 세팅 메뉴</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <tr>
+          <td>
+            <form class="container1" action="/table/create" method="get">
+              <h3>테이블 생성</h3>
+              <div class="table-create">
+                  <label class="form-label">가로</label>
+                  <input type="text" name="row">
+              </div>
+              <div class="table-create">
+                  <label class="form-label">세로</label>
+                  <input type="text" name="col">
+              </div>
+              <button type="submit" class="btn btn-primary">테이블 생성</button>
+            </form>
+          </td>
+
+          <td>
+            <form class="container2" action="/table/fixed" method="get">
+              <h3>고정석, 이용불가 좌석 지정</h3>
+              * 한 번에 1칸씩
+                <div class="fixed">
+                  <label class="target-row">가로</label>
+                  <input type="text" name="row">
+              </div>
+              <div class="table-create">
+                  <label class="target-col">세로</label>
+                  <input type="text" name="col">
+              </div>
+              <button type="submit" class="btn btn-primary">좌석 지정</button>
+            </form>
+          </td>
+
+          <td>
+            <form class="container3">
+              <h3>랜덤 배치 시작</h3>
+              <button type="submit" class="btn btn-primary">자리 배치 시작</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <br>
     
     <table class="table" border="1">
         <thead>
-          <tr>
-            <th scope="col" colspan='9'>앞</th>
-            
+          <tr class="table-header">
+            <th scope="col" colspan='9'>앞(칠판)</th>
           </tr>
         </thead>
         <tbody>
