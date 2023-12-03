@@ -1,4 +1,4 @@
-insert into Student(id, name) values(1, '장민호');
+insert into Student(id, name) values(1, '진민호');
 insert into Student(id, name) values(2, '서희주');
 insert into Student(id, name) values(3, '박예린');
 insert into Student(id, name) values(4, '김영현');
