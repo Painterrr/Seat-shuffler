@@ -10,4 +10,6 @@ public class SeatShufflerApplication {
 		SpringApplication.run(SeatShufflerApplication.class, args);
 	}
 
+	
+
 }
