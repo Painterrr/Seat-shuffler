@@ -23,11 +23,17 @@ public class TableService {
                     table[i][j] = students.get(index);
                 }
             }
-
-
         }
         return table;
     }
 
+    /*
+     * table 객체 어떻게 할 지 논의 필요.
+     */
+    public Student[][] unused(int row, int col) {
+        Student[][] table = new Student[row][col];
+        
+        return table;
+    }
 }
 

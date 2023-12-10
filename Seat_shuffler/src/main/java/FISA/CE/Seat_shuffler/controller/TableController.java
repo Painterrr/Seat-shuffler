@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @Slf4j
 public class TableController {
-
+    
 
     @Autowired
     private final TableService tableService = new TableService();
@@ -22,13 +22,16 @@ public class TableController {
     @GetMapping("/table/create") 
     public String createTable(@RequestParam int row, @RequestParam int col, Model model) {
         log.info("input row: " + row + "/ col: " + col);
+        // 여기서 생성한 테이블 객체를 저장하고 있어야 함.
         Student[][] table = tableService.create(row, col);
         model.addAttribute("table", table);
         return "main";
     }
 
-    @GetMapping("/table/fixed")
+    @GetMapping("/table/unused")
     public String fixedSeat(@PathVariable int row, int col) {
+        log.info("input row: " + row + "/ col: " + col);
+        
 
         return "main";
     }

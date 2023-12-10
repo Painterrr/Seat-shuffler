@@ -71,17 +71,37 @@
           </td>
 
           <td>
+            <form class="container2" action="/table/unused" method="get">
+              <h3>이용불가 좌석 지정</h3>
+              * 한 번에 1칸씩
+                <div class="unused">
+                  <label class="row">가로</label>
+                  <input type="text" name="unused-row">
+              </div>
+              <div class="unused">
+                  <label class="col">세로</label>
+                  <input type="text" name="unused-col">
+              </div>
+              <button type="submit" class="btn btn-primary">좌석 지정</button>
+            </form>
+          </td>
+
+          <td>
             <form class="container2" action="/table/fixed" method="get">
-              <h3>고정석, 이용불가 좌석 지정</h3>
+              <h3>고정석 지정</h3>
               * 한 번에 1칸씩
                 <div class="fixed">
-                  <label class="target-row">가로</label>
+                  <label class="row">가로</label>
                   <input type="text" name="row">
               </div>
-              <div class="table-create">
-                  <label class="target-col">세로</label>
+              <div class="fixed">
+                  <label class="col">세로</label>
                   <input type="text" name="col">
               </div>
+              <div class="">
+                <label class="target-name">이름</label>
+                <input type="text" name="col">
+            </div>
               <button type="submit" class="btn btn-primary">좌석 지정</button>
             </form>
           </td>
