@@ -24,4 +24,15 @@ public class TableController {
         return "main";
     }
 
+    @GetMapping("/table/fixed")
+    public String fixedSeat(@PathVariable int row, int col) {
+
+        return "main";
+    }
+
+    @GetMapping("/table/seatShuffle")
+    public String seatShuffle() {
+        
+        return "main";
+    }
 }
