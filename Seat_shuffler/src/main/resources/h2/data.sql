@@ -29,5 +29,11 @@ insert into Student(id, name) values(24, '이채현');
 insert into Student(id, name) values(25, '장지은');
 
 insert into Student(id, name) values(26, '이대원');
+insert into Student(id, name) values(27, '이대원');
+insert into Student(id, name) values(28, '이대원');
+insert into Student(id, name) values(29, '이대원');
+insert into Student(id, name) values(30, '이대원');
 
+insert into Student(id, name) values(31, '이대원');
+insert into Student(id, name) values(32, '이대원');
 
