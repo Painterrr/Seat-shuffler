@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public class StudentRepository{
-
     @PersistenceContext
     private EntityManager em;
 
@@ -35,6 +34,4 @@ public class StudentRepository{
             em.remove(findOne(id));
         }
     }
-
-
 }

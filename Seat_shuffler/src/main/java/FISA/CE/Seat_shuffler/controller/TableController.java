@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 @Controller
 public class TableController {
-
     private static final Logger log = LoggerFactory.getLogger(TableController.class);
     @Autowired
     private TableService tableService;
@@ -32,7 +31,6 @@ public class TableController {
     }
 
     @GetMapping("/table/fix-student")
-
     public String fixedSeat(@RequestParam int row, @RequestParam int col, @RequestParam Integer id, @RequestParam String name, Model model) {
         log.info("input row: " + row + "/ col: " + col);
         tableService.setFixedSeat(row, col, id, name);

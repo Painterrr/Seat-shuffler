@@ -12,12 +12,10 @@ import javax.transaction.Transactional;
 
 @Service
 public class TableService {
-
     @Autowired
     private StudentRepository studentRepository;
 
     public People[][] table = null;
-
 
     public People[][] createTable(int row, int col) {
         table = new People[row][col];
@@ -39,8 +37,6 @@ public class TableService {
         } else {
             throw new ArrayIndexOutOfBoundsException("유효하지 않은 행 또는 열입니다.");
         }
-
     }
-
 }
 

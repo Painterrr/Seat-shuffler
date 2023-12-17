@@ -15,7 +15,6 @@ import javax.persistence.Id;
 @ToString
 public class FixedStudent extends People {
     @Id
-
     private Integer id;
 
     @Column
