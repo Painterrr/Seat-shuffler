@@ -40,99 +40,111 @@
     </style>
 </head>
 <body>
-    <br>
-    
-    <h1>FISA 클라우드 엔지니어링 랜덤 자리 배치</h1>
-    <br>
-    <br>
-    
-    <table class="setting-menu">
-      <thead>
-        <tr class="table-header">
-          <th scope="col" colspan='9'>테이블 세팅 메뉴</th>
-        </tr>
-      </thead>
+<br>
 
-      <tbody>
-        <tr>
-          <td>
+<h1>FISA 클라우드 엔지니어링 랜덤 자리 배치</h1>
+<br>
+<br>
+
+<table class="setting-menu">
+    <thead>
+    <tr class="table-header">
+        <th scope="col" colspan='9'>테이블 세팅 메뉴</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>
             <form class="container1" action="/table/create" method="get">
-              <h3>테이블 생성</h3>
-              <div class="table-create">
-                  <label class="form-label">가로</label>
-                  <input type="number" name="row">
-              </div>
-              <div class="table-create">
-                  <label class="form-label">세로</label>
-                  <input type="number" name="col">
-              </div>
-              <button type="submit" class="btn btn-primary">테이블 생성</button>
+                <h3>테이블 생성</h3>
+                <div class="table-create">
+                    <label class="form-label">가로</label>
+                    <input type="number" name="row">
+                </div>
+                <div class="table-create">
+                    <label class="form-label">세로</label>
+                    <input type="number" name="col">
+                </div>
+                <button type="submit" class="btn btn-primary">테이블 생성</button>
             </form>
-          </td>
+        </td>
 
-          <td>
-            <form class="container2" action="/table/unused" method="get">
-              <h3>이용불가 좌석 지정</h3>
-              * 한 번에 1칸씩
-                <div class="unused">
-                  <label class="row">가로</label>
-                  <input type="text" name="unused-row">
-              </div>
-              <div class="unused">
-                  <label class="col">세로</label>
-                  <input type="text" name="unused-col">
-              </div>
-              <button type="submit" class="btn btn-primary">좌석 지정</button>
+        <td>
+            <form class="container2" action="/table/unavailable" method="get">
+                <h3>이용불가 좌석 지정</h3>
+                * 한 번에 1칸씩
+                <div class="Unavailable">
+                    <label class="row">가로</label>
+                    <input type="text" name="unavailable-row">
+                </div>
+                <div class="Unavailable">
+                    <label class="col">세로</label>
+                    <input type="text" name="unabailable-col">
+                </div>
+                <button type="submit" class="btn btn-primary">좌석 지정</button>
             </form>
-          </td>
+        </td>
 
-          <td>
-            <form class="container2" action="/table/fixed" method="get">
-              <h3>고정석 지정</h3>
-              * 한 번에 1칸씩
+        <td>
+            <form class="container2" action="/table/fix-student" method="get">
+                <h3>고정석 지정</h3>
+                * 한 번에 1칸씩
                 <div class="fixed">
-                  <label class="row">가로</label>
-                  <input type="text" name="row">
-              </div>
-              <div class="fixed">
-                  <label class="col">세로</label>
-                  <input type="text" name="col">
-              </div>
-              <div class="">
-                <label class="target-name">이름</label>
-                <input type="text" name="col">
-            </div>
-              <button type="submit" class="btn btn-primary">좌석 지정</button>
+                    <label class="row">가로</label>
+                    <input type="number" name="row">
+                </div>
+                <div class="fixed">
+                    <label class="col">세로</label>
+                    <input type="number" name="col">
+                </div>
+                <div class="fixed">
+                    <label class="col">번호</label>
+                    <input type="number" name="id">
+                </div>
+                <div class="fixed">
+                    <label class="name">이름</label>
+                    <input type="text" name="name">
+                </div>
+                <button type="submit" class="btn btn-primary">좌석 지정</button>
             </form>
-          </td>
+        </td>
 
-          <td>
+        <td>
             <form class="container3" action="table/seatShuffle">
-              <h3>랜덤 배치 시작</h3>
-              <button type="submit" class="btn btn-primary">자리 배치 시작</button>
+                <h3>랜덤 배치 시작</h3>
+                <button type="submit" class="btn btn-primary">자리 배치 시작</button>
             </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <br>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
 
-    <table class="table" border="1">
-        <thead>
-        <tr class="table-header">
-            <th scope="col" colspan='9'>앞(칠판)</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#table}}
-          <tr>
-              {{#.}}
-              <td>{{name}}</td>
-              {{/.}}
-          </tr>
-        {{/table}}
-        </tbody>
-    </table>
+
+<table class="table" border="1">
+    <thead>
+    <tr class="table-header">
+        <th scope="col" colspan='9'>앞(칠판)</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#table}}
+    <tr>
+        {{#this}}
+        <td>
+            {{#.}}
+            {{name}}
+            {{/.}}
+            {{^this}}
+            &nbsp;
+            {{/this}}
+        </td>
+        {{/this}}
+    </tr>
+    {{/table}}
+    </tbody>
+</table>
 
 
 </body>

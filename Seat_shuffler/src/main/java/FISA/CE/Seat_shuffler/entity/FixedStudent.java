@@ -1,15 +1,11 @@
 package FISA.CE.Seat_shuffler.entity;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 
-
-
-import lombok.*;
-
-import static javax.persistence.GenerationType.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,8 +13,9 @@ import static javax.persistence.GenerationType.*;
 @Setter
 @Entity
 @ToString
-public class Student extends People {
-    @Id @GeneratedValue(strategy = IDENTITY)
+public class FixedStudent extends People {
+    @Id
+
     private Integer id;
 
     @Column
