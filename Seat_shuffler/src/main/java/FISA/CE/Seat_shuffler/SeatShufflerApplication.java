@@ -8,5 +8,4 @@ public class SeatShufflerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SeatShufflerApplication.class, args);
 	}
-
 }

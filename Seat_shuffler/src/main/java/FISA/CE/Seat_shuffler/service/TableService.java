@@ -1,7 +1,6 @@
 package FISA.CE.Seat_shuffler.service;
 
-import FISA.CE.Seat_shuffler.entity.FixedStudent;
-import FISA.CE.Seat_shuffler.entity.People;
+import FISA.CE.Seat_shuffler.entity.Student;
 import FISA.CE.Seat_shuffler.entity.UnavailableSeat;
 import FISA.CE.Seat_shuffler.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +14,28 @@ public class TableService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public People[][] table = null;
+    public Student[][] table = null;
 
-    public People[][] createTable(int row, int col) {
-        table = new People[row][col];
+    public Student[][] createTable(int row, int col) {
+        table = new Student[row][col];
 
         return table;
     }
 
-    public void setUnavailableSeat(int row, int col, Integer id, String name){
-        UnavailableSeat unavailableSeat = new UnavailableSeat(id, name);
-        table[row][col] = unavailableSeat;
+    public void setUnavailableSeat(int row, int col){
+        UnavailableSeat unavailableSeat = new UnavailableSeat();
+        if (table != null && row < table.length && col < table[row].length) {
+            table[row][col] = unavailableSeat;
+        } else {
+            throw new ArrayIndexOutOfBoundsException("유효하지 않은 행 또는 열입니다.");
+        }
     }
 
     @Transactional
-    public void setFixedSeat(int row, int col, Integer id, String name){
-        FixedStudent fixedStudent = new FixedStudent(id, name);
+    public void setFixedSeat(int row, int col, long id){
+        Student fixedStudent = new Student();
         if (table != null && row < table.length && col < table[row].length) {
-            table[row][col] = fixedStudent;
-            studentRepository.deleteById(id);
+            table[row][col] = studentRepository.findOne(id);
         } else {
             throw new ArrayIndexOutOfBoundsException("유효하지 않은 행 또는 열입니다.");
         }

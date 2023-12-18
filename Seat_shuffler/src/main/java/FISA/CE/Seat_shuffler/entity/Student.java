@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 
 import lombok.*;
 
+import java.util.Objects;
+
 import static javax.persistence.GenerationType.*;
 
 @NoArgsConstructor
@@ -17,9 +19,10 @@ import static javax.persistence.GenerationType.*;
 @Setter
 @Entity
 @ToString
-public class Student extends People {
+
+public class Student {
     @Id @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    private long id;
 
     @Column
     private String name;

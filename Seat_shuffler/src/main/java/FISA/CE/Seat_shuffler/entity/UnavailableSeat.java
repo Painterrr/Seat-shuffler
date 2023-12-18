@@ -1,9 +1,5 @@
 package FISA.CE.Seat_shuffler.entity;
 
-
-
-
-
 import lombok.*;
 
 import javax.persistence.Column;
@@ -16,9 +12,10 @@ import javax.persistence.Id;
 @Setter
 @Entity
 @ToString
-public class UnavailableSeat extends People {
+
+public class UnavailableSeat extends Student{
     @Id
-    private Integer id;
+    private long id;
 
     @Column
     private String name;

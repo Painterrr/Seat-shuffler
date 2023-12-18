@@ -1,5 +1,6 @@
 package FISA.CE.Seat_shuffler.controller;
 
+import FISA.CE.Seat_shuffler.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ public class TableController {
     @Autowired
     private TableService tableService;
 
+    private StudentService studentService;
+
     @GetMapping("/table/create") 
     public String createTable(@RequestParam int row, @RequestParam int col, Model model) {
         log.info("input row: " + row + "/ col: " + col);
@@ -31,9 +34,9 @@ public class TableController {
     }
 
     @GetMapping("/table/fix-student")
-    public String fixedSeat(@RequestParam int row, @RequestParam int col, @RequestParam Integer id, @RequestParam String name, Model model) {
+    public String fixedSeat(@RequestParam int row, @RequestParam int col, @RequestParam long id, Model model) {
         log.info("input row: " + row + "/ col: " + col);
-        tableService.setFixedSeat(row, col, id, name);
+        tableService.setFixedSeat(row, col, id);
         log.info("table: " + Arrays.deepToString(tableService.table));
         model.addAttribute("table", tableService.table);
         return "main";
@@ -41,7 +44,7 @@ public class TableController {
 
     @GetMapping("/table/seatShuffle")
     public String seatShuffle() {
-        
+
         return "main";
     }
 }
