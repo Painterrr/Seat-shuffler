@@ -1,10 +1,6 @@
 package FISA.CE.Seat_shuffler.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-
+import javax.persistence.*;
 
 
 import lombok.*;
@@ -19,7 +15,8 @@ import static javax.persistence.GenerationType.*;
 @Setter
 @Entity
 @ToString
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
 public class Student {
     @Id @GeneratedValue(strategy = IDENTITY)
     private long id;
