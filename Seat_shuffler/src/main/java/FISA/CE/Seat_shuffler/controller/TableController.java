@@ -33,8 +33,17 @@ public class TableController {
         return "main";
     }
 
+    @GetMapping("/table/unavailable")
+    public String UnavailbleSeat(@RequestParam int row, @RequestParam int col, Model model) {
+        log.info("input row: " + row + "/ col: " + col);
+        tableService.setUnavailableSeat(row, col);
+        log.info("table: " + Arrays.deepToString(tableService.table));
+        model.addAttribute("table", tableService.table);
+        return "main";
+    }
+
     @GetMapping("/table/fix-student")
-    public String fixedSeat(@RequestParam int row, @RequestParam int col, @RequestParam long id, Model model) {
+    public String fixedSeat(@RequestParam int row, @RequestParam int col, @RequestParam long id, Model model) throws Exception {
         log.info("input row: " + row + "/ col: " + col);
         tableService.setFixedSeat(row, col, id);
         log.info("table: " + Arrays.deepToString(tableService.table));

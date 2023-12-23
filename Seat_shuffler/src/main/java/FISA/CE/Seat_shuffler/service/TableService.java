@@ -14,8 +14,10 @@ public class TableService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public Student[][] table = null;
+    private UnavailableSeat unavailableSeat = new UnavailableSeat("X");
 
+    public Student[][] table = null;
+    
     public Student[][] createTable(int row, int col) {
         table = new Student[row][col];
 
@@ -23,7 +25,6 @@ public class TableService {
     }
 
     public void setUnavailableSeat(int row, int col){
-        UnavailableSeat unavailableSeat = new UnavailableSeat();
         if (table != null && row < table.length && col < table[row].length) {
             table[row][col] = unavailableSeat;
         } else {
@@ -32,10 +33,15 @@ public class TableService {
     }
 
     @Transactional
-    public void setFixedSeat(int row, int col, long id){
+    public void setFixedSeat(int row, int col, long id) throws Exception {
         Student fixedStudent = new Student();
         if (table != null && row < table.length && col < table[row].length) {
-            table[row][col] = studentRepository.findOne(id);
+            if(table[row][col] == null){
+                table[row][col] = studentRepository.findOne(id);
+            } else {
+                throw new Exception("해당 좌석은 지정 불가합니다.");
+            }
+
         } else {
             throw new ArrayIndexOutOfBoundsException("유효하지 않은 행 또는 열입니다.");
         }

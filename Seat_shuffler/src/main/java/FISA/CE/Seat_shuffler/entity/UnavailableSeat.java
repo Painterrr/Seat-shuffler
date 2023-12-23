@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -17,6 +18,7 @@ public class UnavailableSeat extends Student{
     @Id
     private long id;
 
+    @NonNull
     @Column
     private String name;
 }
