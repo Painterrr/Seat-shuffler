@@ -22,18 +22,10 @@ insert into Student(id, name) values(18, '염휘주');
 insert into Student(id, name) values(19, '이강륜');
 insert into Student(id, name) values(20, '김민석');
 
-insert into Student(id, name) values(21, '유강현');
-insert into Student(id, name) values(22, '한상우');
-insert into Student(id, name) values(23, '황현수');
-insert into Student(id, name) values(24, '이채현');
-insert into Student(id, name) values(25, '장지은');
+insert into Student(id, name) values(21, '한상우');
+insert into Student(id, name) values(22, '황현수');
+insert into Student(id, name) values(23, '이채현');
+insert into Student(id, name) values(24, '장지은');
+insert into Student(id, name) values(25, '이대원');
 
-insert into Student(id, name) values(26, '이대원');
-insert into Student(id, name) values(27, '이대원');
-insert into Student(id, name) values(28, '이대원');
-insert into Student(id, name) values(29, '이대원');
-insert into Student(id, name) values(30, '이대원');
-
-insert into Student(id, name) values(31, '이대원');
-insert into Student(id, name) values(32, '이대원');
 

@@ -1,5 +1,6 @@
 package FISA.CE.Seat_shuffler.controller;
 
+import FISA.CE.Seat_shuffler.entity.Student;
 import FISA.CE.Seat_shuffler.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,9 +52,22 @@ public class TableController {
         return "main";
     }
 
+    /*
+    @author 이대원, 장지은
+    @date 2023-12-23
+    @parameter Model model
+    @description : TableService의 완성된 테이블 받아서 출력
+    @return String
+    */
     @GetMapping("/table/seatShuffle")
-    public String seatShuffle() {
-
+    public String seatShuffle(Model model) {
+        try {
+            tableService.setTable(tableService.shuffleStudent());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        log.info("table: " + Arrays.deepToString(tableService.table));
+        model.addAttribute("table", tableService.table);
         return "main";
     }
 }

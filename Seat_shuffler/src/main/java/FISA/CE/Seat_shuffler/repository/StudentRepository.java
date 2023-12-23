@@ -5,13 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Repository
 public class StudentRepository {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager em;
 
     /*
@@ -42,13 +44,13 @@ public class StudentRepository {
 
     /*
     @author 장지은
-    @date 2023-12-18
+    @date 2023-12-23
     @parameter
-    @description : 현재 DB에 저장되어있는 모든 Student 객체 list로 반환
-    @return list
+    @description : 현재 DB에 저장되어있는 모든 Student 객체 Arraylist로 반환
+    @return ArrayList<Student>
     */
-    public List<Student> findAll(){
-        List<Student> list = em.createQuery("select s from Student s", Student.class).getResultList();
+    public ArrayList<Student> findAll(){
+        ArrayList<Student> list = (ArrayList<Student>) em.createQuery("select s from Student s", Student.class).getResultList();
         return list;
     }
 
