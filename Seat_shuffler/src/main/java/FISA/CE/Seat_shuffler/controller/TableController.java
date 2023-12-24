@@ -35,7 +35,7 @@ public class TableController {
     }
 
     @GetMapping("/table/unavailable")
-    public String UnavailbleSeat(@RequestParam int row, @RequestParam int col, Model model) {
+    public String UnavailbleSeat(@RequestParam int row, @RequestParam int col, Model model) throws Exception {
         log.info("input row: " + row + "/ col: " + col);
         tableService.setUnavailableSeat(row, col);
         log.info("table: " + Arrays.deepToString(tableService.table));
@@ -62,7 +62,7 @@ public class TableController {
     @GetMapping("/table/seatShuffle")
     public String seatShuffle(Model model) {
         try {
-            tableService.setTable(tableService.shuffleStudent());
+            tableService.table = tableService.setTable(tableService.shuffleStudent());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

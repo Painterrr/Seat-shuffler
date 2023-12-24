@@ -14,14 +14,12 @@ import java.util.ListIterator;
 
 @Service
 public class TableService {
+    public Student[][] table;
+    public ArrayList<Student> students = new ArrayList<>();
     @Autowired
     private StudentRepository studentRepository;
-
     private UnavailableSeat unavailableSeat = new UnavailableSeat("X");
-
-    public Student[][] table = null;
-
-    public ArrayList<Student> students = new ArrayList<>();
+    private Student[][] modifiedTable;
 
     @Transactional
     public ArrayList<Student> initialize() {
@@ -36,12 +34,23 @@ public class TableService {
     public Student[][] createTable(int row, int col) {
         table = new Student[row][col];
         students = initialize();
+        modifiedTable = new Student[row][col]; // 수정 내용 반영된 테이블. 셔플 반복 실행 시 사용
+
         return table;
     }
 
-    public void setUnavailableSeat(int row, int col){
+    public void setUnavailableSeat(int row, int col) throws Exception {
         if (table != null && row < table.length && col < table[row].length) {
-            table[row][col] = unavailableSeat;
+            if (table[row][col] == null) {
+                table[row][col] = unavailableSeat;
+
+                if (modifiedTable[row][col] == null) {
+                    modifiedTable[row][col] = new Student(table[row][col]);
+                }
+
+            } else {
+                throw new Exception("해당 좌석은 지정 불가합니다.");
+            }
         } else {
             throw new ArrayIndexOutOfBoundsException("유효하지 않은 행 또는 열입니다.");
         }
@@ -62,9 +71,13 @@ public class TableService {
                 fixedStudent = studentRepository.findOne(id);
                 table[row][col] = fixedStudent;
 
+                if (modifiedTable[row][col] == null) {
+                    modifiedTable[row][col] = new Student(table[row][col]);
+                }
+
                 int targetId = 0;
-                for(int i = 0; i < students.size(); i++) {
-                    if(students.get(i).getId() == id) {
+                for (int i = 0; i < students.size(); i++) {
+                    if (students.get(i).getId() == id) {
                         targetId = i;
                         break;
                     }
@@ -88,11 +101,11 @@ public class TableService {
     @description : ArrayList Student 셔플
     @return ArrayList<Student>
     */
-    public ArrayList shuffleStudent() throws Exception{
-        if(students != null) {
+    public ArrayList<Student> shuffleStudent() throws Exception {
+        if (students != null) {
             Collections.shuffle(students);
             return students;
-        }else {
+        } else {
             throw new Exception("학생들이 존재하지 않습니다.");
         }
     }
@@ -104,18 +117,28 @@ public class TableService {
     @description : Student ArrayList를 table인 Student[][]에 삽입
     @return Student[][]
     */
-    public Student[][] setTable(List studentList) throws Exception{
-        int count = 0;
-        ListIterator<Student> iterator = studentList.listIterator();
-        for(int i = 0; i<table.length; i++){
-            for(int j = 0; j<table[0].length; j++) {
-                if (iterator.hasNext()){
-                    if(table[i][j] == null) {
-                        table[i][j] = iterator.next();
-                    }else;
-                }else;
+    public Student[][] setTable(List<Student> studentList) throws Exception {
+        table = new Student[modifiedTable.length][modifiedTable[0].length]; // table 우선 초기화
+
+        for (int i = 0; i < table.length; i++) { // 초기화된 table에 modifiedTable 넣어주기
+            for (int j = 0; j < table[i].length; j++) {
+                if (modifiedTable[i][j] != null) {
+                    table[i][j] = new Student(modifiedTable[i][j]);
+                }
             }
         }
+
+        ListIterator<Student> iterator = studentList.listIterator();
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[0].length; j++) {
+                if (iterator.hasNext()) {
+                    if (table[i][j] == null) {
+                        table[i][j] = new Student(iterator.next());
+                    }
+                }
+            }
+        }
+
         return table;
     }
 }

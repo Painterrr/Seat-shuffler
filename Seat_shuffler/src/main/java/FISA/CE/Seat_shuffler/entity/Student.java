@@ -23,4 +23,10 @@ public class Student {
 
     @Column
     private String name;
+
+    public Student(Student student) {
+        this.id = student.getId();
+        this.name = student.getName();
+
+    }
 }
